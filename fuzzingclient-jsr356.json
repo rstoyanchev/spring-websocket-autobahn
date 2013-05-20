@@ -1,0 +1,17 @@
+
+{
+   "options": {"failByDrop": false},
+   "outdir": "./target/reports/servers",
+
+   "servers": [
+                  {
+                     "agent": "AutobahnPython",
+                     "url": "ws://localhost:8080/spring-websocket-autobahn/echoEndpoint",
+                     "options": {"version": 18}
+                  }
+               ],
+
+   "cases": ["*"],
+   "exclude-cases": [],
+   "exclude-agent-cases": {}
+}

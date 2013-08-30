@@ -2,15 +2,19 @@ package org.springframework.samples.autobahn;
 
 import java.util.concurrent.CountDownLatch;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.util.Assert;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.adapter.WebSocketHandlerAdapter;
 import org.springframework.web.socket.client.endpoint.StandardWebSocketClient;
 
 
-public class WebSocketHandlerApplication {
+public class StandardAutobahnClientApplication {
 
-	private static final String AGENT = "SpringWebSocketHandler";
+	private static Log logger = LogFactory.getLog(StandardAutobahnClientApplication.class);
+
+	private static final String AGENT = "Spring WebSocket API";
 
 	private static final String BASE_URI = "ws://127.0.0.1:9001";
 
@@ -29,7 +33,7 @@ public class WebSocketHandlerApplication {
 				echoHandler = new CloseLatchWebSocketHandlerDecorator(echoHandler, closeLatch);
 				client.doHandshake(echoHandler, BASE_URI + "/runCase?case=" + i + "&agent=" + AGENT);
 
-				System.out.println("Waiting for test case " + i + " to complete");
+				logger.info("Waiting for test case " + i + " to complete");
 				closeLatch.await();
 			}
 		}
@@ -63,7 +67,7 @@ public class WebSocketHandlerApplication {
 		reportHandler = new CloseLatchWebSocketHandlerDecorator(reportHandler, closeLatch);
 		client.doHandshake(reportHandler, BASE_URI + "/updateReports?agent=" + AGENT);
 
-		System.out.println("Waiting for report generation to complete");
+		logger.info("Waiting for report generation to complete");
 		closeLatch.await();
 	}
 

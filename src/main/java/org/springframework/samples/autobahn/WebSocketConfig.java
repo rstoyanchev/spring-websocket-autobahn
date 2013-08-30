@@ -5,12 +5,16 @@ import java.util.Map;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
+import org.springframework.web.socket.server.config.EnableWebSocket;
+import org.springframework.web.socket.server.config.WebSocketConfigurer;
+import org.springframework.web.socket.server.config.WebSocketHandlerRegistry;
 import org.springframework.web.socket.server.support.WebSocketHttpRequestHandler;
 
+
 @Configuration
-public class WebConfig extends WebMvcConfigurerAdapter {
+@EnableWebSocket
+public class WebSocketConfig implements WebSocketConfigurer {
 
 	@Bean
 	public SimpleUrlHandlerMapping handlerMapping() {
@@ -22,6 +26,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		hm.setOrder(0);
 		hm.setUrlMap(urlMap);
 		return hm;
+	}
+
+	@Override
+	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+		registry.addHandler(new EchoWebSocketHandler(), "/echo");
 	}
 
 }

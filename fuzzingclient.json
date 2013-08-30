@@ -6,12 +6,12 @@
    "servers": [
                   {
                      "agent": "AutobahnPython",
-                     "url": "ws://localhost:8080/spring-websocket-autobahn/echoWebSocketHandler",
+                     "url": "ws://localhost:8080/spring-websocket-autobahn/echo",
                      "options": {"version": 18}
                   }
                ],
 
-   "cases": ["*"],
+   "cases": ["9.1.1"],
    "exclude-cases": [],
    "exclude-agent-cases": {}
 }

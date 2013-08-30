@@ -14,7 +14,7 @@ public class EchoWebSocketHandler extends WebSocketHandlerAdapter {
 
 	@Override
 	public boolean supportsPartialMessages() {
-		return false;
+		return true;
 	}
 
 }

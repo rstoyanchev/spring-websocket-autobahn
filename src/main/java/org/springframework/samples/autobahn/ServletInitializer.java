@@ -16,30 +16,19 @@
 
 package org.springframework.samples.autobahn;
 
-import org.springframework.util.ClassUtils;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 
 public class ServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-	private static final boolean standardWebSocketPresent = ClassUtils.isPresent(
-			"javax.websocket.Endpoint", ServletInitializer.class.getClassLoader());
-
-
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		if (standardWebSocketPresent) {
-			return new Class<?>[] { EndpointConfig.class };
-		}
-		else {
-			logger.debug("Standard Java for WebSocket not present, JSR-356 endpoints will not be loaded");
-			return null;
-		}
+		return null;
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class<?>[] { WebConfig.class };
+		return new Class<?>[] { WebSocketConfig.class };
 	}
 
 	@Override

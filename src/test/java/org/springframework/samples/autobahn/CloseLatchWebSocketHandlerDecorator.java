@@ -5,7 +5,7 @@ import java.util.concurrent.CountDownLatch;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketSession;
-import org.springframework.web.socket.support.WebSocketHandlerDecorator;
+import org.springframework.web.socket.handler.WebSocketHandlerDecorator;
 
 
 public class CloseLatchWebSocketHandlerDecorator extends WebSocketHandlerDecorator {

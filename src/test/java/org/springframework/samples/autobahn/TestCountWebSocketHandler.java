@@ -5,10 +5,10 @@ import java.util.concurrent.CountDownLatch;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
-import org.springframework.web.socket.adapter.TextWebSocketHandlerAdapter;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 
-public class TestCountWebSocketHandler extends TextWebSocketHandlerAdapter {
+public class TestCountWebSocketHandler extends TextWebSocketHandler {
 
 	private int testCount = -1;
 

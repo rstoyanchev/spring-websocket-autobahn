@@ -6,8 +6,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.Assert;
 import org.springframework.web.socket.WebSocketHandler;
-import org.springframework.web.socket.adapter.WebSocketHandlerAdapter;
-import org.springframework.web.socket.client.endpoint.StandardWebSocketClient;
+import org.springframework.web.socket.client.standard.StandardWebSocketClient;
+import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 
 
 public class StandardAutobahnClientApplication {
@@ -63,7 +63,7 @@ public class StandardAutobahnClientApplication {
 
 		CountDownLatch closeLatch = new CountDownLatch(1);
 
-		WebSocketHandler reportHandler = new WebSocketHandlerAdapter();
+		WebSocketHandler reportHandler = new AbstractWebSocketHandler() {};
 		reportHandler = new CloseLatchWebSocketHandlerDecorator(reportHandler, closeLatch);
 		client.doHandshake(reportHandler, BASE_URI + "/updateReports?agent=" + AGENT);
 
